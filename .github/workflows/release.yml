@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*.*.*
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Download modules
+        run: go mod download
+
+      - name: Test
+        run: go test ./...
+
+      - name: Build examples
+        run: go build ./examples/...
+
+      - name: Verify module path
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(go list -m)" = "github.com/vzaps/vzaps-sdk-go"
+
+      - name: Create GitHub Release
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
