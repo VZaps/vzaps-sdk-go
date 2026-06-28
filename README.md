@@ -91,7 +91,7 @@ _, err := client.Messages.SendText(context.Background(), vzaps.MessageSendTextRe
 
 VZaps uses a two-step model:
 
-1. **Account credentials** — `ClientToken` and `ClientSecret` identify your integration. The SDK calls `POST /auth/token` and caches the JWT.
+1. **Account credentials** — `ClientToken` and `ClientSecret` identify your integration. The SDK calls `POST /token` and caches the JWT.
 2. **Instance token** — instance-scoped routes also require `X-Instance-Token`. Pass it on each instance-scoped request (see [Instance tokens](#instance-tokens)).
 
 Every authenticated HTTP request sends:
