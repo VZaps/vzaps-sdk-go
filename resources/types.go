@@ -359,3 +359,39 @@ type ChatExpirationRequest struct {
 	ChatRequest
 	Expiration string `json:"expiration"`
 }
+
+type SessionBusinessCategory struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+type SessionBusinessProfile struct {
+	BusinessHoursTimeZone string                    `json:"business_hours_timezone,omitempty"`
+	Categories            []SessionBusinessCategory `json:"categories,omitempty"`
+	ProfileOptions        map[string]string         `json:"profile_options,omitempty"`
+	Address               string                    `json:"address,omitempty"`
+	Email                 string                    `json:"email,omitempty"`
+}
+
+// SessionStatusData is the data payload for GET /instances/{id}/session/status.
+// Profile fields are present only when Connected is true.
+type SessionStatusData struct {
+	Connected         bool                    `json:"connected"`
+	Phone             string                  `json:"phone,omitempty"`
+	WhatsAppJID       string                  `json:"whatsapp_jid,omitempty"`
+	PushName          string                  `json:"push_name,omitempty"`
+	BusinessName      string                  `json:"business_name,omitempty"`
+	BusinessProfile   *SessionBusinessProfile `json:"business_profile,omitempty"`
+	ProfilePictureID  string                  `json:"profile_picture_id,omitempty"`
+	ProfilePictureURL string                  `json:"profile_picture_url,omitempty"`
+	ProfileURL        string                  `json:"profile_url,omitempty"`
+	VerifiedName      string                  `json:"verified_name,omitempty"`
+	About             string                  `json:"about,omitempty"`
+	Website           string                  `json:"website,omitempty"`
+}
+
+type SessionStatusResponse struct {
+	Code    int               `json:"code"`
+	Success bool              `json:"success"`
+	Data    SessionStatusData `json:"data"`
+}

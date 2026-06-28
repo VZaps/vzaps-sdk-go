@@ -286,8 +286,12 @@ func NewSessions(httpClient *transport.Client) *SessionsResource {
 	return &SessionsResource{http: httpClient}
 }
 
-func (r *SessionsResource) Status(ctx context.Context, instanceID string, options InstanceOptions) (map[string]any, error) {
-	return requestMap(ctx, r.http, http.MethodGet, "/instances/"+url.PathEscape(instanceID)+"/session/status", nil, options.InstanceToken)
+func (r *SessionsResource) Status(ctx context.Context, instanceID string, options InstanceOptions) (SessionStatusResponse, error) {
+	var out SessionStatusResponse
+	err := r.http.Request(ctx, http.MethodGet, "/instances/"+url.PathEscape(instanceID)+"/session/status", transport.RequestOptions{
+		InstanceToken: options.InstanceToken,
+	}, &out)
+	return out, err
 }
 
 func (r *SessionsResource) QR(ctx context.Context, instanceID string, options InstanceOptions) (map[string]any, error) {
