@@ -197,6 +197,14 @@ Available send helpers include `SendText`, `SendImage`, `SendAudio`, `SendDocume
 | `List(ctx, request)` | `GET /instances/:id/group/list` | List groups (paginated). |
 | `Get(ctx, request)` | `GET /instances/:id/group/info` | Get group metadata by `GroupID`. |
 
+### `client.Sessions`
+
+| Method | HTTP | Description |
+| --- | --- | --- |
+| `Status(ctx, instanceID, options)` | `GET /instances/:id/session/status` | Check WhatsApp login state and, when connected, live profile fields. |
+
+`GET /instances/{id}/session/status` returns `SessionStatusResponse`. When `Data.Connected` is `true`, `Data` includes (in order) `Phone`, `WhatsAppJID`, `PushName`, `BusinessName`, `BusinessProfile`, `ProfilePictureID`, `ProfilePictureURL`, `ProfileURL`, and optional `VerifiedName`, `About`, `Website`. When disconnected, `Data` only has `Connected: false`.
+
 Other public namespaces are available as first-class resources too: `Sessions`, `Users`, `Queues`, `Typebots`, `Chatwoot`, and `Chats`.
 
 ### `client.Request(ctx, method, path, options?, &out)`

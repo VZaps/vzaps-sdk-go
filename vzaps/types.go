@@ -59,6 +59,10 @@ type ChatDeleteRequest = resources.ChatDeleteRequest
 type ChatMuteRequest = resources.ChatMuteRequest
 type ChatClearRequest = resources.ChatClearRequest
 type ChatExpirationRequest = resources.ChatExpirationRequest
+type SessionBusinessCategory = resources.SessionBusinessCategory
+type SessionBusinessProfile = resources.SessionBusinessProfile
+type SessionStatusData = resources.SessionStatusData
+type SessionStatusResponse = resources.SessionStatusResponse
 
 type EventType = events.EventType
 type Event = events.Event
