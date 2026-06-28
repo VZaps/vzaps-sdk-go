@@ -1,6 +1,6 @@
 # VZaps Go SDK
 
-[![CI](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml)
+[![CI](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml) [![SDK Documentation](https://img.shields.io/badge/SDK-Documentation-blue)](https://docs.vzaps.com/en/sdk/go/installation) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Go Reference](https://pkg.go.dev/badge/github.com/vzaps/vzaps-sdk-go/vzaps.svg)](https://pkg.go.dev/github.com/vzaps/vzaps-sdk-go/vzaps)
 
 Official Go client for the [VZaps public API](https://docs.vzaps.com). Send WhatsApp messages, manage instances, configure webhooks, and subscribe to realtime events with a resource-oriented, context-aware interface.
