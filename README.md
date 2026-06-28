@@ -1,7 +1,6 @@
 # VZaps Go SDK
 
-[![CI](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml) [![SDK Documentation](https://img.shields.io/badge/SDK-Documentation-blue)](https://docs.vzaps.com/en/sdk/go/installation) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Go Reference](https://pkg.go.dev/badge/github.com/vzaps/vzaps-sdk-go/vzaps.svg)](https://pkg.go.dev/github.com/vzaps/vzaps-sdk-go/vzaps)
+[![CI](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/VZaps/vzaps-sdk-go/actions/workflows/ci.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/vzaps/vzaps-sdk-go/vzaps.svg)](https://pkg.go.dev/github.com/vzaps/vzaps-sdk-go/vzaps) [![SDK Documentation](https://img.shields.io/badge/SDK-Documentation-blue)](https://docs.vzaps.com/en/sdk/go/installation) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Official Go client for the [VZaps public API](https://docs.vzaps.com). Send WhatsApp messages, manage instances, configure webhooks, and subscribe to realtime events with a resource-oriented, context-aware interface.
 
@@ -16,7 +15,7 @@ Works in **Go 1.22+**. HTTP uses the standard library; WebSocket realtime uses [
 - [Installation](#installation)
 - [Quick start](#quick-start)
 - [Authentication](#authentication)
-- [Configuration](#configuration)
+- [Client options](#client-options)
 - [Resources](#resources)
 - [Instance tokens](#instance-tokens)
 - [Webhooks](#webhooks)
@@ -110,14 +109,7 @@ token, err := client.Auth.GetAccessToken(ctx)
 
 ---
 
-## Configuration
-
-The SDK connects to the VZaps production platform automatically:
-
-| Service | Endpoint |
-| --- | --- |
-| REST API | `https://api.vzaps.com` |
-| Realtime WebSocket | `wss://realtime.vzaps.com/events/ws` |
+## Client options
 
 Pass options to `NewClient` or `MustNewClient`:
 
@@ -130,8 +122,6 @@ Pass options to `NewClient` or `MustNewClient`:
 | `HTTPClient` | `HTTPDoer` | `http.DefaultClient` | Custom HTTP client (tests, proxies, tracing). |
 | `Dialer` | `WebSocketDialer` | gorilla default | Custom WebSocket dialer. |
 | `UserAgent` | `string` | — | Optional `User-Agent` header on HTTP requests. |
-
-No host configuration is required — install the module, pass your credentials, and the client targets the production API and realtime service.
 
 ---
 
@@ -262,7 +252,7 @@ Event payloads (webhook and realtime) use **snake_case**, matching the platform.
 
 ## Realtime events
 
-Subscribe to the same events over WebSocket at **`wss://realtime.vzaps.com`**. This is the recommended path for in-app notifications, bots, and dashboards that need low-latency delivery without exposing a public webhook URL.
+Subscribe to the same events over the VZaps realtime WebSocket. This is the recommended path for in-app notifications, bots, and dashboards that need low-latency delivery without exposing a public webhook URL.
 
 ### Subscribe
 
